@@ -193,7 +193,7 @@ function initCursorGlow() {
   window.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
   (function lerp() {
     cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
-    glow.style.left = cx + 'px'; glow.style.top = cy + 'px';
+    glow.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`;
     requestAnimationFrame(lerp);
   })();
 }
@@ -211,12 +211,12 @@ function initCustomCursor() {
 
   window.addEventListener('mousemove', e => {
     tx = e.clientX; ty = e.clientY;
-    dot.style.left = tx + 'px'; dot.style.top = ty + 'px';
+    dot.style.transform = `translate(calc(${tx}px - 50%), calc(${ty}px - 50%))`;
   }, { passive: true });
 
   (function lerpRing() {
     rx += (tx - rx) * 0.13; ry += (ty - ry) * 0.13;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
     requestAnimationFrame(lerpRing);
   })();
 
